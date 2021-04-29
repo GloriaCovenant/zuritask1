@@ -9,15 +9,15 @@ $user_id_err = $title_err = $level_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate name
-    $input_username = trim($_POST["user_id"]);
-    if(empty($input_username)){
+    $input_user_id = trim($_POST["user_id"]);
+    if(empty($input_user_id)){
         $user_id_err = "Please enter your Username.";
-    } elseif(!filter_var($input_username, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+    } elseif(!filter_var($input_user_id, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
         $user_id_err = "Please enter a valid name.";
     } else{
-        $user_id = $input_username ;
+        $user_id = $input_user_id ;
     }
-    
+    var_dump($input_user_id);
     // Validate title
     $input_title = trim($_POST["title"]);
     if(empty($input_title)){
@@ -96,6 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <label>Name</label>
                             <input type="text" name="user_id" class="form-control <?php echo (!empty($user_id_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $user_id; ?>">
                             <span class="invalid-feedback"><?php echo $user_id_err;?></span>
+                           
                         </div>
                         <div class="form-group">
                             <label>Course title</label>
@@ -108,7 +109,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <span class="invalid-feedback"><?php echo $level_err;?></span>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
+                        
                         <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                        
                     </form>
                     
                     

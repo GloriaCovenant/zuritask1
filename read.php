@@ -13,7 +13,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         mysqli_stmt_bind_param($stmt, "i", $param_id);
         
         // Set parameters
-        $param_id = trim($_GET["id"]);
+        $param_user_id = trim($_GET["id"]);
         
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
@@ -24,9 +24,9 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 contains only one row, we don't need to use while loop */
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 
-                // Retrieve individual field value
+                // Retrieve indivuser_idual field value
                 $user_id = $row["user_id"];
-                $courses = $row["course"];
+                $title = $row["title"];
                 $level = $row["level"];
             } else{
                 // URL doesn't contain valid id parameter. Redirect to error page
@@ -72,7 +72,8 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                     <h1 class="mt-5 mb-3">View Record</h1>
                     <div class="form-group">
                         <label>user_id</label>
-                        <p><b><?php echo $row["useruser_id"]; ?></b></p>
+                        <p><b><?php echo $row["user_id"]; ?></b></p>
+                        var_dump($row);
                     </div>
                     <div class="form-group">
                         <label>Title</label>
